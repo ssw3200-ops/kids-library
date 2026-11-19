@@ -1,0 +1,167 @@
+{
+ "updated": "2026-11-19 22:39",
+ "period": "10.20~11.18",
+ "sample": false,
+ "ages": [
+  {
+   "code": "0",
+   "label": "영유아",
+   "sub": "0~5세",
+   "emoji": "👶"
+  },
+  {
+   "code": "6",
+   "label": "유아",
+   "sub": "6~7세",
+   "emoji": "🧒"
+  },
+  {
+   "code": "8",
+   "label": "초등",
+   "sub": "8~13세",
+   "emoji": "🎒"
+  }
+ ],
+ "priority": [
+  "세종",
+  "대전"
+ ],
+ "regions": {
+  "서울": {
+   "file": "seoul",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "부산": {
+   "file": "busan",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "대구": {
+   "file": "daegu",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "인천": {
+   "file": "incheon",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "광주": {
+   "file": "gwangju",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "대전": {
+   "file": "daejeon",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "울산": {
+   "file": "ulsan",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "세종": {
+   "file": "sejong",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "경기": {
+   "file": "gyeonggi",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "강원": {
+   "file": "gangwon",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "충북": {
+   "file": "chungbuk",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "충남": {
+   "file": "chungnam",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "전북": {
+   "file": "jeonbuk",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "전남": {
+   "file": "jeonnam",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "경북": {
+   "file": "gyeongbuk",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "경남": {
+   "file": "gyeongnam",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  },
+  "제주": {
+   "file": "jeju",
+   "books": 0,
+   "checked": 0,
+   "libs": 0,
+   "lat": null,
+   "lon": null
+  }
+ }
+}
