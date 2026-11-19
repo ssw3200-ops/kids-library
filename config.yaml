@@ -1,0 +1,26 @@
+# 우리 동네 도서관 그림책 — 설정
+
+# 하루 API 호출 한도 (정보나루: IP 미등록 키는 하루 500건)
+# 수동 실행분까지 합쳐서 계산하니 여유를 두고 480
+daily_call_limit: 480
+
+# 소장 도서관을 먼저 채울 지역 (블로그 독자가 많은 곳)
+priority_regions: [세종, 대전]
+
+# 인기 대출 집계 기간 (최근 N일)
+period_days: 30
+
+# 목록 길이
+national_size: 40   # 전국 인기
+region_size: 30     # 시·도 인기
+
+# 소장 정보 다시 확인하는 주기 (일)
+holding_ttl_days: 21
+
+# 연령 탭 (정보나루 age 코드: 0 영유아 0~5세, 6 유아 6~7세, 8 초등 8~13세)
+# addCode 7 = 아동 도서 (ISBN 부가기호)
+ages:
+  - {code: "0", label: "영유아", sub: "0~5세", emoji: "👶"}
+  - {code: "6", label: "유아", sub: "6~7세", emoji: "🧒"}
+  - {code: "8", label: "초등", sub: "8~13세", emoji: "🎒"}
+add_code: "7"

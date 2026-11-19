@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>우리 동네 도서관 그림책 | 아이랑 오늘 뭐하지?</title>
+<meta name="robots" content="noindex">
+<meta property="og:title" content="우리 동네 도서관 그림책 📚">
+<meta property="og:description" content="요즘 아이들이 많이 빌리는 책, 우리 동네 어느 도서관에 있을까?">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FFF8EC;--card:#fff;--ink:#3d3a36;--sub:#8a8178;--main:#FF8A3D;--pink:#FF6B8B;--line:#F3E3C8;--ok:#2E9B45;--blue:#3FA7F5}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;-webkit-text-size-adjust:100%}
+  header{padding:20px 16px 6px;text-align:center}
+  h1{font-family:Jua,sans-serif;font-weight:400;font-size:27px;margin:0;line-height:1.3}
+  h1 span:nth-child(7n+1){color:#FF5A5F}h1 span:nth-child(7n+2){color:#FF9F1C}h1 span:nth-child(7n+3){color:#F2B705}
+  h1 span:nth-child(7n+4){color:#4CB84C}h1 span:nth-child(7n+5){color:#3FA7F5}h1 span:nth-child(7n+6){color:#6C63FF}h1 span:nth-child(7n){color:#C86DD7}
+  .sub{font-family:Jua,sans-serif;color:var(--main);font-size:16px;margin-top:2px;word-break:keep-all}
+  .upd{font-size:12px;color:var(--sub);margin-top:6px}
+  .alert{max-width:640px;margin:8px auto 0;padding:0 12px}
+  .alert div{background:#EAF5FF;border-radius:16px;padding:10px 12px;font-size:13px;line-height:1.55;color:#245a85;word-break:keep-all}
+  .filters{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 12px 6px;margin-top:8px}
+  .wrap{max-width:640px;margin:0 auto}
+  .seg{display:flex;background:#fff;border:2px solid var(--line);border-radius:14px;overflow:hidden}
+  .seg button{flex:1;border:0;background:none;padding:7px 2px;font-family:Jua,sans-serif;font-size:16px;color:var(--sub);min-height:48px;line-height:1.2}
+  .seg button small{display:block;font-size:11px;font-family:-apple-system,sans-serif;opacity:.85}
+  .seg button.on{background:var(--main);color:#fff}
+  .top{display:flex;gap:8px;align-items:center;margin-top:8px}
+  select{font-size:16px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);padding:9px 8px;min-height:44px;font-family:Jua,sans-serif;flex:1;min-width:0}
+  .loc{flex:0 0 auto;border:0;background:var(--pink);color:#fff;border-radius:14px;padding:0 12px;min-height:44px;font-family:Jua,sans-serif;font-size:15px}
+  .loc.on{background:var(--ok)}
+  .row-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:8px 0 4px}
+  .row-chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;border:2px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:14px;font-family:Jua,sans-serif;color:var(--ink);min-height:38px}
+  .chip.on{background:var(--ok);border-color:var(--ok);color:#fff}
+  main{padding:10px 12px;max-width:640px;margin:0 auto}
+  .count{font-size:14px;color:var(--sub);margin:4px 4px 10px;line-height:1.5}
+  .card{background:var(--card);border-radius:20px;margin-bottom:12px;box-shadow:0 2px 0 var(--line);padding:12px}
+  .bk{display:flex;gap:12px}
+  .cv{flex:0 0 78px;height:110px;border-radius:10px;background:#FFF1DC;display:flex;align-items:center;justify-content:center;font-size:34px;overflow:hidden;position:relative}
+  .cv img{width:100%;height:100%;object-fit:cover}
+  .rk{position:absolute;left:0;top:0;background:var(--main);color:#fff;font-family:Jua,sans-serif;font-size:13px;padding:2px 7px;border-bottom-right-radius:10px}
+  .info{flex:1;min-width:0}
+  .t{font-size:16.5px;font-weight:700;line-height:1.35;margin:0 0 4px;word-break:keep-all}
+  .row{font-size:13px;color:#5b554f;margin:2px 0;line-height:1.45;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .tag{display:inline-block;font-size:12.5px;padding:3px 9px;border-radius:999px;margin-top:5px;font-weight:700}
+  .tag.yes{background:#E3F8E6;color:var(--ok)}
+  .tag.no{background:#F1F0F0;color:#888;font-weight:400}
+  .tag.wait{background:#FFF7C9;color:#9A7A00;font-weight:400}
+  .btns{display:flex;gap:8px;margin-top:10px}
+  .btns a,.btns button{flex:1;text-align:center;text-decoration:none;border:0;border-radius:12px;padding:10px 4px;font-family:Jua,sans-serif;font-size:15px;min-height:42px}
+  .b-lib{background:var(--main);color:#fff}.b-lib:disabled{background:#F1E6D6;color:#b3a491}
+  .b-fav{background:#FFF0F3;color:var(--pink);flex:0 0 64px!important}.b-fav.on{background:var(--pink);color:#fff}
+  .b-info{background:#EAF5FF;color:#245a85}
+  .libs{margin-top:10px;border-top:2px dashed var(--line);padding-top:6px}
+  .lib{display:flex;align-items:center;gap:8px;padding:8px 2px;border-bottom:1px solid #F6EEDF}
+  .lib:last-child{border-bottom:0}
+  .lib .nm{flex:1;min-width:0;font-size:14px;line-height:1.4}
+  .lib .nm b{display:block;word-break:keep-all}
+  .lib .nm span{font-size:12px;color:var(--sub)}
+  .lib a{flex:0 0 auto;text-decoration:none;border-radius:10px;padding:8px 9px;font-family:Jua,sans-serif;font-size:13px;min-height:36px;display:flex;align-items:center}
+  .lib .go{background:var(--blue);color:#fff}.lib .tel{background:#F4F2FF;color:#6C63FF}.lib .mp{background:#E9F7EC;color:#1E7B34}
+  .libnote{font-size:12px;color:var(--sub);padding:4px 2px 0;line-height:1.5}
+  .empty{text-align:center;color:var(--sub);padding:36px 0;line-height:1.7}
+  .more{display:block;width:100%;border:2px solid var(--line);background:#fff;border-radius:14px;padding:12px;font-family:Jua,sans-serif;font-size:16px;color:var(--ink);margin:4px 0 16px}
+  .more[hidden]{display:none}
+  .sample{background:#FFF3B0;color:#7a6200;text-align:center;font-size:13px;padding:8px}
+  footer{text-align:center;padding:16px 16px 40px;font-size:12px;color:var(--sub);line-height:1.7}
+  footer a.blog{display:inline-block;margin-top:10px;background:#FFF0F3;color:var(--pink);font-family:Jua,sans-serif;font-size:17px;text-decoration:none;padding:12px 18px;border-radius:14px}
+  .lock{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+  .lock[hidden]{display:none}
+  .lock .box{background:#fff;border-radius:24px;padding:28px 22px;max-width:360px;width:100%;text-align:center;box-shadow:0 3px 0 var(--line)}
+  .lock .emo{font-size:52px}
+  .lock h2{font-family:Jua,sans-serif;font-weight:400;font-size:24px;margin:8px 0 6px;color:var(--main)}
+  .lock p{word-break:keep-all;font-size:14px;color:var(--sub);line-height:1.6;margin:0 0 16px}
+  .lock input{width:100%;font-size:18px;text-align:center;border:2px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+  .lock button{width:100%;border:0;border-radius:14px;padding:14px;font-family:Jua,sans-serif;font-size:18px;background:var(--main);color:#fff}
+  .lock .err{color:#E0603A;font-size:13px;min-height:18px;margin-top:8px}
+  .lock a{display:block;margin-top:14px;color:var(--pink);font-size:14px}
+</style>
+</head>
+<body>
+<div class="lock" id="lock" hidden>
+  <div class="box">
+    <div class="emo">🔒📚</div>
+    <h2>우리 동네 도서관 그림책</h2>
+    <p>블로그 <b>아이랑 오늘 뭐하지?</b> 이웃님 전용 페이지예요.<br>비밀번호는 블로그 글에 댓글 남겨주시면<br>비밀댓글로 보내드려요 💌</p>
+    <input type="password" id="pw" placeholder="비밀번호" autocomplete="current-password" enterkeyhint="go">
+    <button id="pwBtn">열기</button>
+    <div class="err" id="pwErr"></div>
+    <a href="https://blog.naver.com/todaywithkids">블로그로 가서 비밀번호 받기 →</a>
+  </div>
+</div>
+<div id="sample" class="sample" hidden>지금은 샘플 데이터예요 (실제 책·도서관 아님).</div>
+<header>
+  <h1 id="h1"></h1>
+  <div class="sub">요즘 아이들이 많이 빌리는 책, 우리 동네 어디 있을까?</div>
+  <div class="upd" id="upd">불러오는 중…</div>
+</header>
+<div class="alert"><div>
+  📚 순위·소장 정보는 <b>도서관 정보나루</b> 기준(매일 갱신)이에요. <b>지금 빌릴 수 있는지</b>는 도서관 목록의 <b>‘대출 확인’</b>을 눌러 도서관 홈페이지에서 확인해 주세요.
+</div></div>
+<div class="filters"><div class="wrap">
+  <div class="seg" id="tabs"></div>
+  <div class="top">
+    <select id="region" aria-label="시도"></select>
+    <select id="city" aria-label="시군구"></select>
+    <button class="loc" id="loc">📍 내 위치</button>
+  </div>
+  <div class="row-chips" id="chips"></div>
+</div></div>
+<main>
+  <div class="count" id="count"></div>
+  <div id="list"></div>
+  <button class="more" id="more" hidden>더 보기</button>
+</main>
+<footer>
+  데이터: 국립중앙도서관 도서관 정보나루 (인기대출도서 · 도서 소장 도서관)<br>
+  아동 도서 · 대출자 연령별 최근 30일 집계 · 매일 자동 갱신<br>
+  <a class="blog" href="https://blog.naver.com/todaywithkids">🎈 아이랑 오늘 뭐하지? 블로그</a>
+</footer>
+<script>
+const $=id=>document.getElementById(id);
+const store={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let META=null,PW=null,D=null,AGE="0",ME=null,SHOW=20;
+const CACHE={};
+const OPT={kind:"r",here:false,fav:false};
+let FAV={};try{FAV=JSON.parse(store.get("kl_fav")||"{}")}catch(e){FAV={}}
+const NEAR_KM=5;
+
+(t=>{$("h1").innerHTML=[...t].map(c=>c===" "?" ":`<span>${c}</span>`).join("")})("우리 동네 도서관 그림책 📚");
+
+function dist(a,b,c,d){const R=6371,r=Math.PI/180,x=(d-b)*r*Math.cos((a+c)/2*r),y=(c-a)*r;return Math.sqrt(x*x+y*y)*R}
+const km=v=>v<1?`${Math.round(v*1000)}m`:`${v.toFixed(1)}km`;
+
+// ---------- 복호화
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function decrypt(enc,pw){
+  const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(enc.salt),iterations:enc.iter,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["decrypt"]);
+  const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(enc.iv)},key,b64(enc.ct));
+  if(enc.z==="gzip"){
+    const st=new Blob([pt]).stream().pipeThrough(new DecompressionStream("gzip"));
+    return JSON.parse(await new Response(st).text());
+  }
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+async function load(reg,pw=PW){
+  if(CACHE[reg])return CACHE[reg];
+  const r=await fetch(`data/${META.regions[reg].file}.enc.json?v=${encodeURIComponent(META.updated)}`);
+  return CACHE[reg]=await decrypt(await r.json(),pw);
+}
+
+// ---------- 화면 틀
+function setupUI(){
+  $("tabs").innerHTML=META.ages.map(a=>`<button data-a="${a.code}">${a.emoji} ${esc(a.label)}<small>${esc(a.sub)}</small></button>`).join("");
+  AGE=store.get("kl_age")||META.ages[0].code;
+  OPT.kind=store.get("kl_kind")||"r";
+  $("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;AGE=b.dataset.a;store.set("kl_age",AGE);OPT.fav=false;SHOW=20;tabs();chips();render()};
+  tabs();
+  $("region").innerHTML=Object.keys(META.regions).map(r=>`<option>${r}</option>`).join("");
+  $("region").value=store.get("kl_region")||"세종";
+  $("region").onchange=async()=>{clearMe();store.set("kl_region",$("region").value);store.set("kl_city","");await changeRegion()};
+  $("city").onchange=()=>{store.set("kl_city",$("city").value);SHOW=20;render()};
+  $("loc").onclick=()=>ME?(clearMe(),render()):locate();
+  $("more").onclick=()=>{SHOW+=20;render()};
+  chips();
+}
+function tabs(){[...$("tabs").children].forEach(b=>b.classList.toggle("on",b.dataset.a===AGE))}
+function chips(){
+  const nfav=Object.keys(FAV).length;
+  const list=[["r","🏆 우리 지역 인기",OPT.kind==="r"&&!OPT.fav],["n","🇰🇷 전국 인기",OPT.kind==="n"&&!OPT.fav],
+    ["here",ME?`🏛 ${NEAR_KM}km 안 도서관에 있는 책만`:"🏛 우리 동네에 있는 책만",OPT.here],["fav",`⭐ 찜한 책${nfav?" "+nfav:""}`,OPT.fav]];
+  $("chips").innerHTML=list.map(([k,l,on])=>`<button class="chip${on?" on":""}" data-k="${k}">${l}</button>`).join("");
+  $("chips").onclick=e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.k;
+    if(k==="r"||k==="n"){OPT.kind=k;OPT.fav=false;store.set("kl_kind",k)}
+    else OPT[k]=!OPT[k];
+    SHOW=20;chips();render()};
+}
+async function changeRegion(){
+  D=await load($("region").value);
+  const cities=[...new Set(D.libs.map(l=>l[7]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ko"));
+  $("city").innerHTML=`<option value="">전체</option>`+cities.map(c=>`<option>${esc(c)}</option>`).join("");
+  const saved=store.get("kl_city");$("city").value=cities.includes(saved)?saved:"";
+  $("city").hidden=cities.length<=1;
+  SHOW=20;await render();
+}
+function clearMe(){ME=null;$("loc").classList.remove("on");$("loc").textContent="📍 내 위치";chips()}
+function locate(){
+  if(!navigator.geolocation){alert("이 휴대폰에서는 위치를 쓸 수 없어요. 지역을 직접 골라주세요.");return}
+  $("loc").textContent="찾는 중…";
+  navigator.geolocation.getCurrentPosition(async p=>{
+    ME=[p.coords.latitude,p.coords.longitude];
+    const near=Object.entries(META.regions).filter(([,m])=>m.lat).sort((a,b)=>dist(ME[0],ME[1],a[1].lat,a[1].lon)-dist(ME[0],ME[1],b[1].lat,b[1].lon))[0];
+    if(near&&near[0]!==$("region").value){$("region").value=near[0];store.set("kl_region",near[0]);store.set("kl_city","")}
+    $("loc").textContent="📍 내 주변";$("loc").classList.add("on");chips();
+    await changeRegion();
+  },()=>{$("loc").textContent="📍 내 위치";alert("위치 권한이 꺼져 있어요. 지역을 직접 골라주세요.")},{enableHighAccuracy:false,timeout:10000,maximumAge:300000});
+}
+
+// ---------- 목록
+function libsOf(isbn){ // 확인 전이면 null
+  const h=D.hold[isbn];
+  if(!h)return null;
+  let ls=h.map(i=>D.libs[i]).map(l=>({l,d:ME&&l[5]&&l[6]?dist(ME[0],ME[1],l[5],l[6]):null}));
+  if(ME)ls.sort((a,b)=>(a.d??1e9)-(b.d??1e9));
+  else{const c=$("city").value;ls.sort((a,b)=>((b.l[7]===c)-(a.l[7]===c))||a.l[1].localeCompare(b.l[1],"ko"))}
+  return ls;
+}
+function nearCount(ls){
+  if(!ls)return null;
+  if(ME)return ls.filter(x=>x.d!=null&&x.d<=NEAR_KM).length;
+  const c=$("city").value;return c?ls.filter(x=>x.l[7]===c).length:ls.length;
+}
+function rows(){
+  if(OPT.fav){
+    return Object.keys(FAV).map(isbn=>({isbn,loan:null,rank:null}));
+  }
+  const src=(D.lists[AGE]||{})[OPT.kind]||[];
+  return src.map(([isbn,loan],i)=>({isbn,loan,rank:i+1}));
+}
+async function render(){
+  if(!D)return;
+  let list=rows().map(x=>({...x,ls:libsOf(x.isbn)}));
+  list.forEach(x=>x.n=nearCount(x.ls));
+  if(OPT.here)list=list.filter(x=>x.n);
+  const reg=$("region").value,city=$("city").value,m=META.regions[reg];
+  const where=ME?"내 주변":(reg+(city?" "+city:""));
+  const age=META.ages.find(a=>a.code===AGE);
+  const head=OPT.fav?"⭐ 찜한 책":`${OPT.kind==="r"?reg:"전국"} ${age.label} 인기`;
+  const have=list.filter(x=>x.n).length;
+  let msg=`${head} ${list.length}권 · ${where} 도서관에 있는 책 ${have}권`;
+  if(m.checked<m.books)msg+=`<br>⏳ ${reg} 소장 정보 ${Math.round(m.checked/m.books*100)}% 채움 — 매일 조금씩 채워져요`;
+  $("count").innerHTML=msg;
+  if(!list.length){
+    $("list").innerHTML=`<div class="empty">${OPT.fav?"아직 찜한 책이 없어요.<br>마음에 드는 책에 ⭐를 눌러 두면<br>도서관 갈 때 한 번에 볼 수 있어요!":"조건에 맞는 책이 없어요 😢<br>‘우리 동네에 있는 책만’을 끄거나<br>시·군·구를 ‘전체’로 바꿔 보세요."}</div>`;
+    $("more").hidden=true;return;
+  }
+  $("list").innerHTML=list.slice(0,SHOW).map(card).join("");
+  $("more").hidden=list.length<=SHOW;
+}
+function holdTag(x){
+  if(!x.ls)return `<span class="tag wait">⏳ 소장 도서관 확인 중 (곧 채워져요)</span>`;
+  if(!x.ls.length)return `<span class="tag no">🙅 ${esc($("region").value)} 도서관엔 아직 없어요</span>`;
+  if(ME){
+    const d=x.ls[0].d;
+    return x.n?`<span class="tag yes">🏛 ${NEAR_KM}km 안 ${x.n}곳 · 가장 가까운 곳 ${km(d)}</span>`
+      :`<span class="tag no">🏛 가까운 곳 없음 · ${$("region").value} ${x.ls.length}곳${d!=null?" (가장 가까운 곳 "+km(d)+")":""}</span>`;
+  }
+  const c=$("city").value;
+  if(c)return x.n?`<span class="tag yes">🏛 ${esc(c)} ${x.n}곳에 있어요</span>`:`<span class="tag no">🏛 ${esc(c)}엔 없음 · ${esc($("region").value)} ${x.ls.length}곳</span>`;
+  return `<span class="tag yes">🏛 ${esc($("region").value)} ${x.ls.length}곳에 있어요</span>`;
+}
+function card(x){
+  const b=D.books[x.isbn]||(FAV[x.isbn]?[FAV[x.isbn][0],FAV[x.isbn][1],"","",""]:["(목록에서 빠진 책)","","","",""]);
+  const [title,author,pub,year,img]=b;
+  const meta=[author,pub,year].filter(Boolean).map(esc).join(" · ");
+  const cv=img?`<img src="${esc(img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:"";
+  const q=encodeURIComponent(title+" "+(author||"").split(/[;,]/)[0]);
+  const fav=!!FAV[x.isbn];
+  return `<div class="card" data-isbn="${x.isbn}">
+    <div class="bk">
+      <div class="cv">📖${cv}${x.rank?`<span class="rk">${x.rank}위</span>`:""}</div>
+      <div class="info">
+        <div class="t">${esc(title)}</div>
+        <div class="row">${meta}</div>
+        ${x.loan?`<div class="row">📈 최근 대출 ${x.loan.toLocaleString()}회</div>`:""}
+        ${holdTag(x)}
+      </div>
+    </div>
+    <div class="btns">
+      <button class="b-lib"${x.ls&&x.ls.length?"":" disabled"}>🏛 도서관 보기</button>
+      <a class="b-info" href="https://search.shopping.naver.com/book/search?query=${q}" target="_blank" rel="noopener">🔎 책 정보</a>
+      <button class="b-fav${fav?" on":""}" aria-label="찜">${fav?"⭐":"☆"}</button>
+    </div>
+    <div class="libs" hidden></div>
+  </div>`;
+}
+function libList(isbn){
+  const ls=libsOf(isbn)||[];
+  return ls.slice(0,30).map(({l,d})=>{
+    const [,name,addr,tel,home,,,city]=l;
+    const q=encodeURIComponent(name);
+    const url=/^https?:\/\//.test(home)?home:(home?"http://"+home:"");
+    return `<div class="lib">
+      <div class="nm"><b>${esc(name)}</b><span>${d!=null?`<b style="display:inline;color:var(--ok)">${km(d)}</b> · `:""}${esc(city||addr.split(" ").slice(0,3).join(" "))}</span></div>
+      ${url?`<a class="go" href="${esc(url)}" target="_blank" rel="noopener">대출 확인 ↗</a>`:""}
+      ${tel?`<a class="tel" href="tel:${esc(tel.replace(/[^0-9-]/g,""))}">📞</a>`:""}
+      <a class="mp" href="https://map.naver.com/p/search/${q}" target="_blank" rel="noopener">🗺</a>
+    </div>`}).join("")+(ls.length>30?`<div class="libnote">외 ${ls.length-30}곳 더 있어요</div>`:"")
+    +`<div class="libnote">💡 ‘대출 확인’은 도서관 홈페이지로 가요. 책 제목으로 검색하면 지금 대출 가능한지 볼 수 있어요.</div>`;
+}
+$("list").onclick=e=>{
+  const c=e.target.closest(".card");if(!c)return;const isbn=c.dataset.isbn;
+  if(e.target.closest(".b-lib")){const box=c.querySelector(".libs");
+    if(box.hidden)box.innerHTML=libList(isbn);box.hidden=!box.hidden;
+    e.target.closest(".b-lib").textContent=box.hidden?"🏛 도서관 보기":"🏛 접기";return}
+  if(e.target.closest(".b-fav")){
+    if(FAV[isbn])delete FAV[isbn];else{const b=D.books[isbn]||["",""];FAV[isbn]=[b[0],b[1]]}
+    store.set("kl_fav",JSON.stringify(FAV));
+    const btn=e.target.closest(".b-fav");btn.classList.toggle("on",!!FAV[isbn]);btn.textContent=FAV[isbn]?"⭐":"☆";
+    chips();if(OPT.fav)render();
+  }
+};
+
+// ---------- 시작
+async function unlock(pw,quiet){
+  $("pwBtn").textContent="여는 중…";
+  try{
+    await load($("region").value||"세종",pw);
+    PW=pw;store.set("kl_pw",pw);$("lock").hidden=true;
+    await changeRegion();
+  }catch(e){
+    Object.keys(CACHE).forEach(k=>delete CACHE[k]);
+    $("lock").hidden=false;if(!quiet)$("pwErr").textContent="비밀번호가 맞지 않아요. 최신 비밀번호를 확인해 주세요!";
+  }
+  $("pwBtn").textContent="열기";
+}
+(async()=>{
+  const r=await fetch("meta.json?"+Date.now());
+  if(!r.ok){$("upd").textContent="아직 데이터가 없어요. 잠시 후 다시 와주세요!";return}
+  META=await r.json();
+  $("upd").textContent=`업데이트 ${META.updated} · 대출 집계 ${META.period}`;
+  if(META.sample)$("sample").hidden=false;
+  setupUI();
+  $("pwBtn").onclick=()=>unlock($("pw").value.trim());
+  $("pw").onkeydown=e=>{if(e.key==="Enter")unlock($("pw").value.trim())};
+  const saved=store.get("kl_pw");
+  if(saved)await unlock(saved,true);else $("lock").hidden=false;
+})();
+</script>
+</body>
+</html>
