@@ -67,6 +67,10 @@ class Budget(Exception):
     pass
 
 
+class Fatal(Exception):
+    """키 미승인·잘못된 키 — 더 불러도 소용없음"""
+
+
 class Client:
     def __init__(self, key: str):
         self.key = key
@@ -94,12 +98,15 @@ class Client:
                 root = ET.fromstring(r.content)
                 err = root.findtext(".//error")
                 if err:
-                    raise RuntimeError(f"정보나루 오류: {err.strip()[:120]}")
+                    msg = err.strip()[:120]
+                    if re.search(r"활성화|인증|authKey|키", msg):
+                        raise Fatal(f"정보나루 키 문제: {msg}")
+                    raise RuntimeError(f"정보나루 오류: {msg}")
                 time.sleep(0.25)
                 return root
             except ET.ParseError:
                 last = RuntimeError(f"XML 아님: {r.text[:120]!r}")
-            except RuntimeError as e:
+            except (RuntimeError, Fatal) as e:
                 raise e  # 키·한도 오류는 다시 해도 같음
             except Exception as e:  # noqa: BLE001
                 last = e
@@ -157,7 +164,7 @@ def collect_lists(cl: Client) -> dict:
                 if not got:
                     raise RuntimeError("0건")
                 lists[k][a["code"]] = got
-            except Budget:
+            except (Budget, Fatal):
                 raise
             except Exception as e:  # noqa: BLE001
                 prev = old.get(k, {}).get(a["code"], [])
@@ -247,7 +254,7 @@ def fill_holdings(cl: Client, lists: dict) -> tuple[dict, dict]:
         try:
             hold.setdefault(c, {})[isbn] = {"t": TODAY.isoformat(), "c": holdings(cl, isbn, c, libs)}
             done += 1
-        except Budget:
+        except (Budget, Fatal):
             break
         except Exception as e:  # noqa: BLE001
             fail += 1
@@ -356,6 +363,24 @@ def sample_data() -> tuple[dict, dict, dict]:
 
 
 # ---------------------------------------------------------------- 실행
+def has_real() -> bool:
+    """이미 실제 데이터로 만든 페이지가 있는지"""
+    meta = DOCS / "meta.json"
+    if not meta.exists():
+        return False
+    m = json.loads(meta.read_text(encoding="utf-8"))
+    return not m.get("sample") and any(r.get("books") for r in m.get("regions", {}).values())
+
+
+def any_books(lists: dict) -> bool:
+    return any(rows for v in lists.values() for rows in v.values())
+
+
+def write_status() -> None:
+    (DOCS / "status.json").write_text(json.dumps(status, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(json.dumps(status, ensure_ascii=False, indent=1))
+
+
 def main() -> None:
     sample = "--sample" in sys.argv
     password = os.environ.get("PAGE_PASSWORD", "").strip() or ("sample" if sample else "")
@@ -363,28 +388,39 @@ def main() -> None:
     if not password:
         print("PAGE_PASSWORD 가 아직 없어요 (GitHub Secrets) — 이번 실행은 건너뜀")
         return
-    if not sample and not key:
-        meta = DOCS / "meta.json"
-        if meta.exists() and not json.loads(meta.read_text(encoding="utf-8")).get("sample"):
-            sys.exit("D4L_KEY 가 없어요 — 실제 데이터를 덮어쓰지 않고 중단")
-        print("D4L_KEY 가 아직 없어서 샘플 데이터로 만들어요 (키 승인 후 Secrets 에 넣으면 실제 데이터로 바뀜)")
-        sample = True
+
+    def fallback(why: str) -> None:
+        """실제 데이터가 아직 없으면 샘플로, 있으면 그대로 두고 실패 처리"""
+        status["errors"].append(why)
+        if has_real():
+            write_status()
+            sys.exit(why + " — 기존 데이터 유지")
+        print(why + " — 샘플 데이터로 만들어요")
+        lists, hold, libs = sample_data()
+        build(lists, hold, libs, password, True)
+
     if sample:
         lists, hold, libs = sample_data()
         build(lists, hold, libs, password, True)
+        return
+    if not key:
+        fallback("D4L_KEY 가 없어요 (정보나루 인증키를 Secrets 에 넣어주세요)")
         return
     cl = Client(key)
     status["budget_start"] = cl.left()
     try:
         lists = collect_lists(cl)
+    except Fatal as e:
+        cl.save()
+        fallback(f"{e} — 정보나루 마이페이지에서 키 승인 상태를 확인해 주세요")
+        return
     except Budget:
         status["errors"].append("오늘 호출 한도를 이미 다 써서 인기 목록을 못 받았어요 (내일 자동 실행 때 다시)")
         lists = jload("lists.json", {})
-    if not lists.get("N"):
+    if not any_books(lists):
         cl.save()
-        (DOCS / "status.json").write_text(json.dumps(status, ensure_ascii=False, indent=1), encoding="utf-8")
-        print(json.dumps(status, ensure_ascii=False, indent=1))
-        sys.exit("인기 목록을 하나도 못 받았어요 — 키 승인 상태를 확인해 주세요")
+        fallback("인기 목록을 하나도 못 받았어요")
+        return
     hold, libs = fill_holdings(cl, lists)
     cl.save()
     status["calls_today"] = cl.used
