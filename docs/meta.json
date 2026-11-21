@@ -1,7 +1,7 @@
 {
- "updated": "2026-11-20 10:52",
- "period": "10.21~11.19",
- "sample": true,
+ "updated": "2026-11-21 11:00",
+ "period": "10.22~11.20",
+ "sample": false,
  "ages": [
   {
    "code": "0",
@@ -29,139 +29,139 @@
  "regions": {
   "서울": {
    "file": "seoul",
-   "books": 67,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 129,
+   "checked": 7,
+   "libs": 331,
+   "lat": 37.5602,
+   "lon": 127.0032
   },
   "부산": {
    "file": "busan",
-   "books": 64,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 130,
+   "checked": 7,
+   "libs": 56,
+   "lat": 35.1743,
+   "lon": 129.0666
   },
   "대구": {
    "file": "daegu",
-   "books": 64,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 158,
+   "checked": 7,
+   "libs": 75,
+   "lat": 35.8528,
+   "lon": 128.5724
   },
   "인천": {
    "file": "incheon",
-   "books": 68,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 153,
+   "checked": 7,
+   "libs": 51,
+   "lat": 37.4675,
+   "lon": 126.6749
   },
   "광주": {
    "file": "gwangju",
-   "books": 65,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 150,
+   "checked": 6,
+   "libs": 29,
+   "lat": 35.2397,
+   "lon": 126.8844
   },
   "대전": {
    "file": "daejeon",
-   "books": 66,
-   "checked": 60,
-   "libs": 8,
-   "lat": 36.3554,
-   "lon": 127.3999
+   "books": 149,
+   "checked": 149,
+   "libs": 27,
+   "lat": 36.3513,
+   "lon": 127.3981
   },
   "울산": {
    "file": "ulsan",
-   "books": 66,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 137,
+   "checked": 6,
+   "libs": 44,
+   "lat": 35.5776,
+   "lon": 129.3441
   },
   "세종": {
    "file": "sejong",
-   "books": 65,
-   "checked": 58,
-   "libs": 8,
-   "lat": 36.4781,
-   "lon": 127.2566
+   "books": 180,
+   "checked": 180,
+   "libs": 17,
+   "lat": 36.5055,
+   "lon": 127.263
   },
   "경기": {
    "file": "gyeonggi",
-   "books": 65,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 112,
+   "checked": 6,
+   "libs": 392,
+   "lat": 37.4313,
+   "lon": 127.0062
   },
   "강원": {
    "file": "gangwon",
-   "books": 66,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 94,
+   "checked": 6,
+   "libs": 52,
+   "lat": 37.6824,
+   "lon": 128.3514
   },
   "충북": {
    "file": "chungbuk",
-   "books": 63,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 146,
+   "checked": 6,
+   "libs": 54,
+   "lat": 36.8092,
+   "lon": 127.7046
   },
   "충남": {
    "file": "chungnam",
-   "books": 65,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 138,
+   "checked": 6,
+   "libs": 62,
+   "lat": 36.6284,
+   "lon": 126.8208
   },
   "전북": {
    "file": "jeonbuk",
-   "books": 66,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 94,
+   "checked": 6,
+   "libs": 65,
+   "lat": 35.8001,
+   "lon": 127.0466
   },
   "전남": {
    "file": "jeonnam",
-   "books": 61,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 139,
+   "checked": 6,
+   "libs": 56,
+   "lat": 34.921,
+   "lon": 127.177
   },
   "경북": {
    "file": "gyeongbuk",
-   "books": 59,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 131,
+   "checked": 6,
+   "libs": 103,
+   "lat": 36.2144,
+   "lon": 129.0297
   },
   "경남": {
    "file": "gyeongnam",
-   "books": 66,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 120,
+   "checked": 6,
+   "libs": 119,
+   "lat": 35.1936,
+   "lon": 128.6231
   },
   "제주": {
    "file": "jeju",
-   "books": 69,
-   "checked": 0,
-   "libs": 0,
-   "lat": null,
-   "lon": null
+   "books": 162,
+   "checked": 6,
+   "libs": 16,
+   "lat": 33.3814,
+   "lon": 126.5321
   }
  }
 }
