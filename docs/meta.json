@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-27 12:20",
- "period": "10.28~11.26",
+ "updated": "2026-11-28 12:03",
+ "period": "10.29~11.27",
  "sample": false,
  "ages": [
   {
@@ -29,56 +29,56 @@
  "regions": {
   "서울": {
    "file": "seoul",
-   "books": 130,
-   "checked": 130,
+   "books": 128,
+   "checked": 128,
    "libs": 351,
    "lat": 37.5611,
    "lon": 127.0029
   },
   "부산": {
    "file": "busan",
-   "books": 133,
-   "checked": 133,
+   "books": 130,
+   "checked": 130,
    "libs": 57,
    "lat": 35.1755,
    "lon": 129.0693
   },
   "대구": {
    "file": "daegu",
-   "books": 156,
-   "checked": 156,
+   "books": 158,
+   "checked": 158,
    "libs": 87,
    "lat": 35.8565,
    "lon": 128.5824
   },
   "인천": {
    "file": "incheon",
-   "books": 151,
-   "checked": 151,
+   "books": 152,
+   "checked": 152,
    "libs": 51,
    "lat": 37.4675,
    "lon": 126.6749
   },
   "광주": {
    "file": "gwangju",
-   "books": 155,
-   "checked": 155,
+   "books": 150,
+   "checked": 150,
    "libs": 29,
    "lat": 35.2397,
    "lon": 126.8844
   },
   "대전": {
    "file": "daejeon",
-   "books": 151,
-   "checked": 151,
+   "books": 153,
+   "checked": 153,
    "libs": 27,
    "lat": 36.3513,
    "lon": 127.3981
   },
   "울산": {
    "file": "ulsan",
-   "books": 144,
-   "checked": 144,
+   "books": 142,
+   "checked": 142,
    "libs": 45,
    "lat": 35.577,
    "lon": 129.3449
@@ -93,8 +93,8 @@
   },
   "경기": {
    "file": "gyeonggi",
-   "books": 114,
-   "checked": 114,
+   "books": 116,
+   "checked": 116,
    "libs": 402,
    "lat": 37.4274,
    "lon": 127.0102
@@ -109,16 +109,16 @@
   },
   "충북": {
    "file": "chungbuk",
-   "books": 150,
-   "checked": 150,
+   "books": 144,
+   "checked": 144,
    "libs": 54,
    "lat": 36.8092,
    "lon": 127.7046
   },
   "충남": {
    "file": "chungnam",
-   "books": 144,
-   "checked": 144,
+   "books": 141,
+   "checked": 141,
    "libs": 62,
    "lat": 36.6284,
    "lon": 126.8208
@@ -133,8 +133,8 @@
   },
   "전남": {
    "file": "jeonnam",
-   "books": 133,
-   "checked": 133,
+   "books": 130,
+   "checked": 130,
    "libs": 57,
    "lat": 34.9191,
    "lon": 127.1639
@@ -149,16 +149,16 @@
   },
   "경남": {
    "file": "gyeongnam",
-   "books": 121,
-   "checked": 121,
+   "books": 122,
+   "checked": 122,
    "libs": 121,
    "lat": 35.1941,
    "lon": 128.6268
   },
   "제주": {
    "file": "jeju",
-   "books": 165,
-   "checked": 165,
+   "books": 163,
+   "checked": 163,
    "libs": 16,
    "lat": 33.3814,
    "lon": 126.5321
